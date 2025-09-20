@@ -3,7 +3,7 @@ name: Run Android Tests on Remote Appium Server
 on:
   push:
     branches:
-      - main
+      - master
 
 jobs:
   test:
@@ -21,4 +21,6 @@ jobs:
           cache: 'maven'
 
       - name: Run tests
-        run: mvn clean test -Dappium.server.url=${{ secrets.APPIUM_REMOTE_URL }}
+        run: |
+          chmod +x ./gradlew
+          ./gradlew test -Dappium.server.url=${{ secrets.APPIUM_REMOTE_URL }}
