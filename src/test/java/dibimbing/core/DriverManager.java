@@ -2,6 +2,7 @@ package dibimbing.core;
 
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.android.options.UiAutomator2Options;
+import org.openqa.selenium.WebDriver;
 
 import java.net.MalformedURLException;
 import java.net.URL;
@@ -18,9 +19,7 @@ public class DriverManager {
         .autoGrantPermissions();
 
     try {
-      String appiumUrl = System.getProperty("appium.server.url", "http://127.0.0.1:4723");
-      System.out.println("Appium URL: " + appiumUrl);
-      URL appiumServerUrl = new URL("https://stopping-intimate-dealer-med.trycloudflare.com");
+      URL appiumServerUrl = new URL("http://127.0.0.1:4723");
       driver.set(new AndroidDriver(appiumServerUrl, options));
       driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     } catch (MalformedURLException e) {
