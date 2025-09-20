@@ -18,7 +18,8 @@ public class DriverManager {
         .autoGrantPermissions();
 
     try {
-      URL appiumServerUrl = new URL("http://127.0.0.1:4723");
+      String appiumUrl = System.getProperty("appium.server.url", "http://127.0.0.1:4723");
+      URL appiumServerUrl = new URL(appiumUrl);
       driver.set(new AndroidDriver(appiumServerUrl, options));
       driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
     } catch (MalformedURLException e) {
