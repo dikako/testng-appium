@@ -39,4 +39,4 @@ jobs:
       - name: Run tests
         run: |
           chmod +x ./gradlew
-          ./gradlew test -Dappium.server.url=${{ secrets.APPIUM_REMOTE_URL }}
+          ./gradlew test -Dappium.server.url=${{ vars.APPIUM_REMOTE_URL }}
