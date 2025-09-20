@@ -19,6 +19,7 @@ public class DriverManager {
 
     try {
       String appiumUrl = System.getProperty("appium.server.url", "http://127.0.0.1:4723");
+      System.out.println("Appium URL: " + appiumUrl);
       URL appiumServerUrl = new URL(appiumUrl);
       driver.set(new AndroidDriver(appiumServerUrl, options));
       driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
