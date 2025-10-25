@@ -5,10 +5,14 @@ import dibimbing.core.DriverManager;
 import dibimbing.pages.GlobalPage;
 import dibimbing.pages.LoginPage;
 import dibimbing.pages.ProductPage;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.testng.Assert;
 import org.testng.annotations.Test;
 
 public class LoginTest extends BaseTest {
+  private static final Logger log = LoggerFactory.getLogger(LoginTest.class);
+
   @Test
   public void testSuccessfulLogin() {
     GlobalPage globalPage = new GlobalPage(DriverManager.getDriver());
@@ -43,5 +47,11 @@ public class LoginTest extends BaseTest {
   public void testCheckFooter() {
     LoginPage loginPage = new LoginPage(DriverManager.getDriver());
     Assert.assertTrue(loginPage.checkFooter());
+  }
+
+  @Test
+  public void testProductDetail() {
+    LoginPage loginPage = new LoginPage(DriverManager.getDriver());
+    loginPage.checkDetailsVioletBackpack();
   }
 }

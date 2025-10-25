@@ -1,5 +1,6 @@
 package dibimbing.pages;
 
+import io.appium.java_client.AppiumBy;
 import io.appium.java_client.android.AndroidDriver;
 import io.appium.java_client.pagefactory.AndroidFindBy;
 import org.openqa.selenium.Dimension;
@@ -7,6 +8,7 @@ import org.openqa.selenium.Point;
 import org.openqa.selenium.WebElement;
 import org.openqa.selenium.interactions.PointerInput;
 import org.openqa.selenium.interactions.Sequence;
+import org.testng.Assert;
 
 import java.time.Duration;
 import java.util.Arrays;
@@ -33,11 +35,16 @@ public class LoginPage extends BasePage {
   @AndroidFindBy(xpath = "//android.widget.TextView[@text=\"© 2023 Sauce Labs All Rights Reserved. Terms of Service | Privacy Policy\"]")
   private WebElement footer;
 
+  @AndroidFindBy(xpath = "//android.widget.TextView[@text='Sauce Labs Backpack (violet)']/preceding-sibling::android.widget.ImageView")
+  private WebElement productTitleViolet;
+
+  @AndroidFindBy(accessibility = "Tap to add product to cart")
+  private WebElement btnAddProductToCart;
+
   public void login(String username, String password) {
     nameET.sendKeys(username);
     passwordET.sendKeys(password);
     loginButton.click();
-    clickChartByCoordinate();
   }
 
   public void clickChartByCoordinate() {
@@ -100,5 +107,22 @@ public class LoginPage extends BasePage {
     }
 
     return footer.isDisplayed();
+  }
+
+  public void checkDetailsVioletBackpack() {
+    // Scroll until the product title is visible
+    driver.findElement(AppiumBy.androidUIAutomator(
+          "new UiScrollable(new UiSelector().scrollable(true))" +
+              ".scrollIntoView(new UiSelector().text(\"Sauce Labs Backpack (violet)\"))"
+        )
+    );
+
+    // Click on the product title
+    productTitleViolet.click();
+    assertBtnCartIsDisplayed();
+  }
+
+  public void assertBtnCartIsDisplayed() {
+    Assert.assertTrue(btnAddProductToCart.isDisplayed(), "Button Add to Cart is not displayed");
   }
 }
