@@ -11,7 +11,7 @@ env:
 
 jobs:
   test:
-    runs-on: macbook
+    runs-on: mac-mini
 
     steps:
       - name: Check out repository
