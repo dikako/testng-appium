@@ -21,7 +21,7 @@ public class DriverManager {
     try {
       URL appiumServerUrl = new URL("http://127.0.0.1:4723");
       driver.set(new AndroidDriver(appiumServerUrl, options));
-      driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(3));
+      driver.get().manage().timeouts().implicitlyWait(Duration.ofSeconds(10));
     } catch (MalformedURLException e) {
       throw new RuntimeException(e);
     }
